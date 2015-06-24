@@ -54,22 +54,28 @@ CodeMirror.keyMap.dyalog["'#{prefs.prefixKey()}'"] = (cm) ->
     cm.setOption 'autoCloseBrackets0', cm.getOption 'autoCloseBrackets'
     cm.setOption 'autoCloseBrackets', false
     cm.on 'change', bqChangeHandler; cm.dyalogBQ = 1
-    c = cm.getCursor(); cm.replaceSelection prefs.prefixKey(), 'end'
-    ctid = delay 500, -> cm.showHint
-      completeOnSingleClick: true
-      extraKeys:
-        Backspace: (cm, m) -> m.close(); cm.execCommand 'delCharBefore'; return
-        Left:      (cm, m) -> m.close(); cm.execCommand 'goCharLeft'; return
-        Right:     (cm, m) -> m.pick(); return
-      hint: ->
-        pk = prefs.prefixKey()
-        data = from: c, to: cm.getCursor(), list: KS.map (k) ->
-          if k == pk
-            text: '', hint: bqbqHint, render: (e) -> e.innerHTML = "  #{pk}#{pk} <i>completion by name</i>"; return
-          else
-            v = bq[k]; text: v, render: (e) -> $(e).text "#{v} #{pk}#{k} #{squiggleDescriptions[v] || ''}  "; return
-        CodeMirror.on data, 'close', -> bqCleanUp cm; return
-        data
+    c0 = cm.getCursor(); cm.replaceSelection prefs.prefixKey(), 'end'
+    ctid = delay 500, ->
+      c1 = cm.getCursor()
+      if c1.line == c0.line && c1.ch == c0.ch + 1
+        cm.showHint
+          completeOnSingleClick: true
+          extraKeys:
+            Backspace: (cm, m) -> m.close(); cm.execCommand 'delCharBefore'; return
+            Left:      (cm, m) -> m.close(); cm.execCommand 'goCharLeft'; return
+            Right:     (cm, m) -> m.pick(); return
+          hint: ->
+            pk = prefs.prefixKey()
+            data = from: c0, to: cm.getCursor(), list: KS.map (k) ->
+              if k == pk
+                text: '', hint: bqbqHint, render: (e) -> e.innerHTML = "  #{pk}#{pk} <i>completion by name</i>"; return
+              else
+                v = bq[k]; text: v, render: (e) -> $(e).text "#{v} #{pk}#{k} #{squiggleDescriptions[v] || ''}  "; return
+            CodeMirror.on data, 'close', -> bqCleanUp cm; return
+            data
+      else
+        bqCleanUp cm
+      return
   return
 
 # `x completions
@@ -84,14 +90,13 @@ bq = $.extend {}, BQ; do -> s = prefs.prefixMap(); for i in [0...s.length] by 2 
 @setBQMap = (bq1) -> $.extend bq, bq1; prefs.prefixMap join(for k, v of bq when v != (BQ[k] || ' ') then k + v); return
 
 bqChangeHandler = (cm, o) -> # o: changeObj
-  l = o.from.line; i = o.from.ch
-  if o.origin == '+input' && l == o.to.line && i == o.to.ch && o.text.length == 1 && o.text[0].length == 1
+  l = o.from.line; c = o.from.ch
+  if o.origin == '+input' && o.text.length == 1 && o.text[0].length == 1
     x = o.text[0]; pk = prefs.prefixKey()
     if x == pk
-      if i && cm.getLine(l)[i - 1] == pk
-        bqCleanUp cm; bqbqHint cm
+      if c && cm.getLine(l)[c - 1] == pk then bqCleanUp cm; bqbqHint cm
     else
-      bq[x] && cm.replaceRange bq[x], {line: l, ch: i - 1}, {line: l, ch: i + 1}, 'D'
+      bq[x] && cm.replaceRange bq[x], {line: l, ch: c - 1}, {line: l, ch: c + 1}, 'D'
       bqCleanUp cm
   else
     bqCleanUp cm

@@ -35,6 +35,12 @@ prefs = @
       -                             {!mac}
       _Quit                    =QIT {!mac}
     _Edit
+      Cut                      =CUT {!mac&&!browser}
+      Copy                     =CPY {!mac&&!browser}
+      Paste                    =PST {!mac&&!browser}
+      Undo                     =UND {!mac&&!browser}
+      Redo                     =RDO {!mac&&!browser}
+      -                             {!mac&&!browser}
       Preferences              =PRF {!mac}
       Select All               =selectAll {mac}
     _View

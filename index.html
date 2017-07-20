@@ -87,14 +87,12 @@
                     <option value=key>Key file
                   </select>
                 </div>
-                <div class="col col-xs-6">
+                <div class="col col-xs-6 nowrap">
                   <input id=cn_ssh_pass type=password>
                   <input id=cn_ssh_key name=ssh_key>
+                  <button id=cn_ssh_key_dots class="browse">&nbsp;</button>
                 </div>
               </div>
-            </div>
-            <div class="col col-xs-2">
-              <button id=cn_ssh_key_dots>Browse...</button>
             </div>
           </div>
           <div class="row">
@@ -107,28 +105,16 @@
           </div>
           <div class="row">
             <div class="col col-xs-3"><label style=padding-left:2em>Cert <span class=cn_hint>(PEM file)</span></div>
-            <div class="col col-xs-6">
-              <div class="row">
-                <div class="col col-xs-9">
-                  <input id=cn_cert name=cert>
-                </div>
-                <div class="col col-xs-5">
-                  <button id=cn_cert_dots>Browse...</button>
-                </div>
-              </div>
+            <div class="col col-xs-6 nowrap">
+              <input id=cn_cert name=cert>
+              <button id=cn_cert_dots class="browse">&nbsp;</button>
             </div>
           </div>
           <div class="row">
             <div class="col col-xs-3"><label style=padding-left:2em>Key <span class=cn_hint>(PEM file)</span></label></div>
-            <div class="col col-xs-6">
-              <div class="row">
-                <div class="col col-xs-9">
-                  <input id=cn_key name=key>
-                </div>
-                <div class="col col-xs-5">
-                  <button id=cn_key_dots>Browse...</button>
-                </div>
-              </div>
+            <div class="col col-xs-6 nowrap">
+              <input id=cn_key name=key>
+              <button id=cn_key_dots class="browse">&nbsp;</button>
             </div>
           </div>
           <div class="row">
@@ -139,14 +125,8 @@
           </div>
           <div class="row">
             <div class="col col-xs-9">
-              <div class="row">
-                <div class="col col-xs-8">
-                  <input id=cn_rootcertsdir name=rootcertsdir>
-                </div>
-                <div class="col col-xs-6">
-                  <button id=cn_rootcertsdir_dots>Browse...</button>
-                </div>
-              </div>
+              <input id=cn_rootcertsdir name=rootcertsdir>
+              <button id=cn_rootcertsdir_dots class="browse">&nbsp;</button>
             </div>
           </div>
         </div>

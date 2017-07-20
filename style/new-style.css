@@ -268,7 +268,7 @@ body {
   border-radius: 2px;
   border: 1px solid white;
   padding-left: 5px;
-  line-height: 24px;
+  line-height: 26px;
   background-color: #e3e0d7;
   border-color: #a9a9a9;
 }
@@ -385,6 +385,23 @@ body {
   overflow-y: auto;
   border-left: 8px solid #fc9732;
 }
+#cn_rhs .col.col-xs-3 {
+  padding-top: 8px;
+}
+#cn_rhs .col > button.browse {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  border: 1px solid #a9a9a9;
+  margin-left: -34px;
+  background: url("img/arrow_right.png");
+}
+#cn_rhs .col > button.browse:hover {
+  box-shadow: none;
+}
+#cn_rhs .col > button.browse:disabled {
+  opacity: 0;
+}
 #cn_rhs button {
   border-radius: 3px;
   padding: 8px;
@@ -462,9 +479,9 @@ input[type=checkbox]:checked {
 }
 input[type=checkbox]:checked:after {
   content: '\2714';
-  font-size: 11px;
+  font-size: 12px;
   position: absolute;
-  top: 0px;
+  top: 1px;
   left: 4px;
   color: #fff;
 }
@@ -483,6 +500,9 @@ a {
 }
 select:focus {
   outline: dotted #000 1px;
+}
+.nowrap {
+  white-space: nowrap;
 }
 #lb {
   font-family: apl, monospace;

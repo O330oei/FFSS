@@ -58,7 +58,7 @@
 	}
 }
 
-.cn_inner{height:100%;}
+.cn_inner{height:calc(100% - 40px);}
 
 #cn_favs {
   position:static;
@@ -113,9 +113,8 @@
 }
 
 #cn_abt {
-	float: right;
   position:absolute;
-  right:5px;
+  right:20px;
 }
 #cn_lhs,#cn_rhs{
   position:static;
@@ -127,7 +126,7 @@
   border-right:1px solid @WHITE;
 }
 #cn_rhs {
-	padding: 10px;
+	padding: 10px 15px;
 	overflow-y: auto;
   border-left:8px solid @PRIMARY;
   .col.col-xs-3 {
@@ -138,7 +137,7 @@
     height:30px;
     padding:0px;
     border:1px solid #a9a9a9;
-    margin-left:-34px;
+    margin-left:-33px;
     background: url("img/arrow_right.png");
     &:hover{
       box-shadow:none;

@@ -311,7 +311,7 @@ body {
   margin-left: 24px;
 }
 .cn_inner {
-  height: 100%;
+  height: calc(100% - 40px);
 }
 #cn_favs {
   position: static;
@@ -366,9 +366,8 @@ body {
   padding: 3px 0px;
 }
 #cn_abt {
-  float: right;
   position: absolute;
-  right: 5px;
+  right: 20px;
 }
 #cn_lhs,
 #cn_rhs {
@@ -381,7 +380,7 @@ body {
   border-right: 1px solid #fff;
 }
 #cn_rhs {
-  padding: 10px;
+  padding: 10px 15px;
   overflow-y: auto;
   border-left: 8px solid #fc9732;
 }
@@ -393,7 +392,7 @@ body {
   height: 30px;
   padding: 0px;
   border: 1px solid #a9a9a9;
-  margin-left: -34px;
+  margin-left: -33px;
   background: url("img/arrow_right.png");
 }
 #cn_rhs .col > button.browse:hover {

@@ -14,6 +14,15 @@ node('Linux && NodeJS && sharedworkspace') {
             // Build RIDE for all platforms
             sh './mk dist'
         }
+}
+node('Windows && sharedworkspace') {
+    exws (extWorkspace) {
+        stage ('Test RIDE') {
+            //Run QA Test suite
+            sh 'npm test -- --tap'
+        }
+    }
+}
 
         stage ('Dyalog Network Publish') {
             // Copy built files to /devt/builds/ride/

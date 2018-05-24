@@ -20,7 +20,7 @@ node('Windows && sharedworkspace') {
     exws (extWorkspace) {
         stage ('Test RIDE') {
             //Run QA Test suite
-            sh 'npm test -- --tap'
+            bat 'npm test -- --tap'
         }
     }
 }

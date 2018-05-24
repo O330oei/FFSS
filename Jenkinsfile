@@ -14,6 +14,7 @@ node('Linux && NodeJS && sharedworkspace') {
             // Build RIDE for all platforms
             sh './mk dist'
         }
+    }
 }
 node('Windows && sharedworkspace') {
     exws (extWorkspace) {
@@ -24,6 +25,8 @@ node('Windows && sharedworkspace') {
     }
 }
 
+node('Linux && NodeJS && sharedworkspace') {
+    exws (extWorkspace) {
         stage ('Dyalog Network Publish') {
             // Copy built files to /devt/builds/ride/
             sh './publish.sh'
